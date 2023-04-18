@@ -1,10 +1,52 @@
 import pygame
 
 
+class Piece:
+    def __init__(self, color):
+        self.name = None
+        self.color = color
+
+
+class Pawn(Piece):
+    def __init__(self, color):
+        super().__init__(color)
+        self.name = "pawn"
+
+
+class Rook(Piece):
+    def __init__(self, color):
+        super().__init__(color)
+        self.name = "rook"
+
+
+class Knight(Piece):
+    def __init__(self, color):
+        super().__init__(color)
+        self.name = "knight"
+
+
+class Bishop(Piece):
+    def __init__(self, color):
+        super().__init__(color)
+        self.name = "bishop"
+
+
+class Queen(Piece):
+    def __init__(self, color):
+        super().__init__(color)
+        self.name = "queen"
+
+
+class King(Piece):
+    def __init__(self, color):
+        super().__init__(color)
+        self.name = "king"
+
+
 class Board:
     class Cell:
         def __init__(self):
-            self.piece = " "
+            self.piece = Piece("none")
             self.background_color = " "
             self.x = 0
             self.y = 0
@@ -13,32 +55,32 @@ class Board:
         self.board = []
         self.player = 1
         for i in range(0, 8):
-            oneDlist = []
+            one_dlist = []
             for j in range(0, 8):
-                oneDlist.append(self.Cell())
-            self.board.append(oneDlist)
+                one_dlist.append(self.Cell())
+            self.board.append(one_dlist)
         for i in range(1, 7, 5):
             for j in range(0, 8):
                 if i == 1:
-                    self.board[j][i].piece = "bp"
+                    self.board[j][i].piece = Pawn("black")
                 if i == 6:
-                    self.board[j][i].piece = "wp"
-        self.board[0][0].piece = "bR"
-        self.board[1][0].piece = "bB"
-        self.board[2][0].piece = "bN"
-        self.board[3][0].piece = "bQ"
-        self.board[4][0].piece = "bK"
-        self.board[5][0].piece = "bN"
-        self.board[6][0].piece = "bB"
-        self.board[7][0].piece = "bR"
-        self.board[0][7].piece = "wR"
-        self.board[1][7].piece = "wB"
-        self.board[2][7].piece = "wN"
-        self.board[3][7].piece = "wQ"
-        self.board[4][7].piece = "wK"
-        self.board[5][7].piece = "wN"
-        self.board[6][7].piece = "wB"
-        self.board[7][7].piece = "wR"
+                    self.board[j][i].piece = Pawn("white")
+        self.board[0][0].piece = Rook("black")
+        self.board[1][0].piece = Bishop("black")
+        self.board[2][0].piece = Knight("black")
+        self.board[3][0].piece = Queen("black")
+        self.board[4][0].piece = King("black")
+        self.board[5][0].piece = Knight("black")
+        self.board[6][0].piece = Bishop("black")
+        self.board[7][0].piece = Rook("black")
+        self.board[0][7].piece = Rook("white")
+        self.board[1][7].piece = Bishop("white")
+        self.board[2][7].piece = Knight("white")
+        self.board[3][7].piece = Queen("white")
+        self.board[4][7].piece = King("white")
+        self.board[5][7].piece = Knight("white")
+        self.board[6][7].piece = Bishop("white")
+        self.board[7][7].piece = Rook("white")
         for i in range(0, 8):
             for j in range(0, 8):
                 if i % 2 == 0:
@@ -70,15 +112,3 @@ class Board:
             for j in range(len(self.board[0])):
                 print(self.board[i][j].piece, end=" ")
             print()
-
-    def move_pawn(self, x, y):
-        x = x
-        y = y
-        print(x, y)
-        if self.board[x][y] == "wp":
-            self.board[x][y] = "-"
-            if self.player == 1:
-                self.board[x-2][y] = "wp"
-
-
-

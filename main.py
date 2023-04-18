@@ -53,29 +53,29 @@ while True:
                     rect = pygame.Rect(chessBoard.board[i][j].x, chessBoard.board[i][j].y, 70, 70)
                     pygame.draw.rect(chess_display, [125, 148, 93], rect)
 
-                if chessBoard.board[i][j].piece == "wp":
+                if chessBoard.board[i][j].piece.name == "pawn" and chessBoard.board[i][j].piece.color == "white":
                     chess_display.blit(white_pawn, piece_rect)
-                elif chessBoard.board[i][j].piece == "bp":
+                elif chessBoard.board[i][j].piece.name == "pawn" and chessBoard.board[i][j].piece.color == "black":
                     chess_display.blit(black_pawn, piece_rect)
-                elif chessBoard.board[i][j].piece == "wR":
+                elif chessBoard.board[i][j].piece.name == "rook" and chessBoard.board[i][j].piece.color == "white":
                     chess_display.blit(white_rook, piece_rect)
-                elif chessBoard.board[i][j].piece == "wN":
+                elif chessBoard.board[i][j].piece.name == "knight" and chessBoard.board[i][j].piece.color == "white":
                     chess_display.blit(white_knight, piece_rect)
-                elif chessBoard.board[i][j].piece == "wQ":
+                elif chessBoard.board[i][j].piece.name == "queen" and chessBoard.board[i][j].piece.color == "white":
                     chess_display.blit(white_queen, piece_rect)
-                elif chessBoard.board[i][j].piece == "wB":
+                elif chessBoard.board[i][j].piece.name == "bishop" and chessBoard.board[i][j].piece.color == "white":
                     chess_display.blit(white_bishop, piece_rect)
-                elif chessBoard.board[i][j].piece == "wK":
+                elif chessBoard.board[i][j].piece.name == "king" and chessBoard.board[i][j].piece.color == "white":
                     chess_display.blit(white_king, piece_rect)
-                elif chessBoard.board[i][j].piece == "bR":
+                elif chessBoard.board[i][j].piece.name == "rook" and chessBoard.board[i][j].piece.color == "black":
                     chess_display.blit(black_rook, piece_rect)
-                elif chessBoard.board[i][j].piece == "bB":
+                elif chessBoard.board[i][j].piece.name == "bishop" and chessBoard.board[i][j].piece.color == "black":
                     chess_display.blit(black_bishop, piece_rect)
-                elif chessBoard.board[i][j].piece == "bN":
+                elif chessBoard.board[i][j].piece.name == "knight" and chessBoard.board[i][j].piece.color == "black":
                     chess_display.blit(black_knight, piece_rect)
-                elif chessBoard.board[i][j].piece == "bQ":
+                elif chessBoard.board[i][j].piece.name == "queen" and chessBoard.board[i][j].piece.color == "black":
                     chess_display.blit(black_queen, piece_rect)
-                elif chessBoard.board[i][j].piece == "bK":
+                elif chessBoard.board[i][j].piece.name == "king" and chessBoard.board[i][j].piece.color == "black":
                     chess_display.blit(black_king, piece_rect)
 
         pygame.display.flip()
