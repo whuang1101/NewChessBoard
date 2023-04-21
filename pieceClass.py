@@ -141,78 +141,85 @@ class Bishop(Piece):
         if self.color == "white":
             for i in range(column + 1, 8):
                 a += 1
-                if board[row - a][column + a].piece.name == "--" or board[row - a][column + a].piece.name[0] == "b":
-                    moves.append((row - a, column + a))
-                    if board[row - a][column + a].piece.name[0] == "b":
+                if row - a >= 0 and column + a < 8:
+                    if board[row - a][column + a].piece.name == "--" or board[row - a][column + a].piece.name[0] == "b":
+                        moves.append((row - a, column + a))
+                        if board[row - a][column + a].piece.name[0] == "b":
+                            break
+                    else:
                         break
-                else:
-                    break
             a = 0
             for i in range(column - 1, -1, -1):
                 a += 1
-                if board[row - a][column - a].piece.name == "--" or board[row - a][column - a].piece.name[0] == "b":
-                    moves.append((row - a, column - a))
-                    if board[row - a][column - a].piece.name[0] == "b":
+                if row - a >= 0 and column - a >= 0:
+                    if board[row - a][column - a].piece.name == "--" or board[row - a][column - a].piece.name[0] == "b":
+                        moves.append((row - a, column - a))
+                        if board[row - a][column - a].piece.name[0] == "b":
+                            break
+                    else:
                         break
-                else:
-                    break
             a = 0
             for i in range(row + 1, 8):
                 a += 1
-                if board[row + a][column - a].piece.name == "--" or board[row + a][column - a].piece.name[0] == "b":
-                    moves.append((row + a, column - a))
-                    if board[row + a][column - a].piece.name[0] == "b":
+                if row + a < 8 and column - a >= 0:
+                    if board[row + a][column - a].piece.name == "--" or board[row + a][column - a].piece.name[0] == "b":
+                        moves.append((row + a, column - a))
+                        if board[row + a][column - a].piece.name[0] == "b":
+                            break
+                    else:
                         break
-                else:
-                    break
             a = 0
             for i in range(row - 1, -1, -1):
                 a += 1
-                if board[row + a][column + a].piece.name == "--" or board[row + a][column + a].piece.name[0] == "b":
-                    moves.append((row + a, column + a))
-                    if board[row + a][column + a].piece.name[0] == "b":
+                if row+a < 8 and column +a < 8:
+                    if board[row + a][column + a].piece.name == "--" or board[row + a][column + a].piece.name[0] == "b":
+                        moves.append((row + a, column + a))
+                        if board[row + a][column + a].piece.name[0] == "b":
+                            break
+                    else:
                         break
-                else:
-                    break
-        # else:
-        #     for i in range(column + 1, 8):
-        #         a += 1
-        #         if board[row - a][column + a].piece.name == "--" or board[row - a][column + a].piece.name[0] == "w":
-        #             moves.append((row - a, column + a))
-        #             if board[row - a][column + a].piece.name[0] == "w":
-        #                 break
-        #         else:
-        #             break
-        #     a = 0
-        #     for i in range(column - 1, -1, -1):
-        #         a += 1
-        #         if board[row - a][column - a].piece.name == "--" or board[row - a][column - a].piece.name[0] == "w":
-        #             moves.append((row - a, column - a))
-        #             if board[row - a][column - a].piece.name[0] == "w":
-        #                 break
-        #         else:
-        #             break
-        #     a = 0
-        #     for i in range(row + 1, 8):
-        #         a += 1
-        #         if board[row + a][column - a].piece.name == "--" or board[row + a][column - a].piece.name[0] == "w":
-        #             moves.append((row + a, column - a))
-        #             if board[row + a][column - a].piece.name[0] == "w":
-        #                 break
-        #         else:
-        #             break
-        #     a = 0
-        #     for i in range(row - 1, -1, -1):
-        #         a += 1
-        #         if row == 7 or column == 7 or row == 0 or column == 0:
-        #             break
-        #         if board[row + a][column + a].piece.name == "--" or board[row + a][column + a].piece.name[0] == "w":
-        #             moves.append((row + a, column + a))
-        #             if board[row + a][column + a].piece.name[0] == "w":
-        #                 break
-        #         else:
-        #             break
-        return moves
+            return moves
+        else:
+            for i in range(column + 1, 8):
+                a += 1
+                if row - a >= 0 and column + a < 8:
+                    if board[row - a][column + a].piece.name == "--" or board[row - a][column + a].piece.name[0] == "w":
+                        moves.append((row - a, column + a))
+                        if board[row - a][column + a].piece.name[0] == "w":
+                            break
+                    else:
+                        break
+            a = 0
+            for i in range(column - 1, -1, -1):
+                a += 1
+                if row - a >= 0 and column - a >= 0:
+                    if board[row - a][column - a].piece.name == "--" or board[row - a][column - a].piece.name[0] == "w":
+                        moves.append((row - a, column - a))
+                        if board[row - a][column - a].piece.name[0] == "w":
+                            break
+                    else:
+                        break
+            a = 0
+            for i in range(row + 1, 8):
+                a += 1
+                if row + a < 8 and column - a >= 0:
+                    if board[row + a][column - a].piece.name == "--" or board[row + a][column - a].piece.name[0] == "w":
+                        moves.append((row + a, column - a))
+                        if board[row + a][column - a].piece.name[0] == "w":
+                            break
+                    else:
+                        break
+            a = 0
+            for i in range(row - 1, -1, -1):
+                a += 1
+                if row + a < 8 and column + a < 8:
+                    if board[row + a][column + a].piece.name == "--" or board[row + a][column + a].piece.name[0] == "w":
+                        moves.append((row + a, column + a))
+                        if board[row + a][column + a].piece.name[0] == "w":
+                            break
+                    else:
+                        break
+            return moves
 
     @staticmethod
     def make_move(board, row, col, previous):

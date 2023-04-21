@@ -62,7 +62,8 @@ if __name__ == "__main__":
                 if len(moves) != 0:
                     for i, j in moves:
                         if i == row and j == col:
-                            chess_board.board[previous_click[0][0]][previous_click[0][1]].piece.make_move(chess_board.board, i, j, previous_click)
+                            chess_board.board[previous_click[0][0]][previous_click[0][1]].piece.make_move(chess_board.
+                                                                                                          board, i, j, previous_click)
                             board_states.append(copy.deepcopy(chess_board.board))
                             player += 1
                     moves.clear()
