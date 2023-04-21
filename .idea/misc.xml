@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (ChessBoard) (2)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (ChessBoard) (2)" project-jdk-type="Python SDK" />
+>>>>>>> dc0794c4814a8777f6901e17fff13705c99b8676
 </project>
