@@ -70,7 +70,13 @@ if __name__ == "__main__":
                 elif chess_board.board[row][col].piece.name != "--":
                     previous_click.clear()
                     if player % 2 == 1 and chess_board.board[row][col].piece.name[0] == "w":
-                        moves = chess_board.board[row][col].piece.possible_moves(chess_board.board, row, col)
+                        if chess_board.get_king_position("white") in chess_board.all_possible_moves(player+1):
+                            new_row, new_col = chess_board.get_king_position("white")
+                            moves = chess_board.board[new_row][new_col].piece.possible_moves(chess_board.board,new_row,new_col)
+                        else:
+                            moves = chess_board.board[row][col].piece.possible_moves(chess_board.board, row, col)
+                            print(chess_board.get_king_position("white"))
+                            print(chess_board.all_possible_moves(player+1))
                     if player % 2 == 0 and chess_board.board[row][col].piece.name[0] == "b":
                         moves = chess_board.board[row][col].piece.possible_moves(chess_board.board, row, col)
 

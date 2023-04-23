@@ -1,4 +1,3 @@
-
 from pieceClass import Piece, Queen, King, Pawn, Rook, Bishop, Knight
 
 
@@ -52,6 +51,29 @@ class Board:
     def get_board(self):
         return self.board
 
-    def update_status(self ,current_board):
+    def update_status(self, current_board):
         # create a new instance of Board
         self.status.append(current_board)
+
+    def all_possible_moves(self, player_number):
+        moves = []
+        if player_number % 2 == 1:
+            for i in range(len(self.board)):
+                for j in range(len(self.board[i])):
+                    if self.board[i][j].piece.name != "--" and self.board[i][j].piece.color == "white":
+                        moves += self.board[i][j].piece.possible_moves(self.board, i, j)
+            return moves
+        else:
+            for i in range(len(self.board)):
+                for j in range(len(self.board[i])):
+                    if self.board[i][j].piece.name != "--" and self.board[i][j].piece.color == "black":
+                        moves += self.board[i][j].piece.possible_moves(self.board, i, j)
+            return moves
+
+    def get_king_position(self, color):
+        move = []
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                if self.board[i][j].piece.name == "wK":
+                    move.append((i,j))
+                    return move
