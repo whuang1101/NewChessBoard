@@ -210,7 +210,7 @@ class Bishop(Piece):
                     else:
                         break
             a = 0
-            for i in range(row, -1, -1):
+            for i in range(row, 8):
                 a += 1
                 if row + a < 8 and column + a < 8:
                     if board[row + a][column + a].piece.name == "--" or board[row + a][column + a].piece.name[0] == "w":
@@ -324,6 +324,10 @@ class King(Piece):
             self.name = "wK"
         else:
             self.name = "bK"
+        self.in_check = False
+
+    def set_check_status(self):
+        return self.in_check
 
     def possible_moves(self, board, row, column):
         moves = []

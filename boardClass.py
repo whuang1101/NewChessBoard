@@ -71,9 +71,8 @@ class Board:
             return moves
 
     def get_king_position(self, color):
-        move = []
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 if self.board[i][j].piece.name == "wK":
-                    move.append((i,j))
+                    move = (i, j)
                     return move

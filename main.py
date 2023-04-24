@@ -72,10 +72,11 @@ if __name__ == "__main__":
                     if player % 2 == 1 and chess_board.board[row][col].piece.name[0] == "w":
                         if chess_board.get_king_position("white") in chess_board.all_possible_moves(player+1):
                             new_row, new_col = chess_board.get_king_position("white")
-                            moves = chess_board.board[new_row][new_col].piece.possible_moves(chess_board.board,new_row,new_col)
+                            chess_board.board[new_row][new_col].piece.set_check_status()
                         else:
                             moves = chess_board.board[row][col].piece.possible_moves(chess_board.board, row, col)
                             print(chess_board.get_king_position("white"))
+                            print(chess_board.get_king_position("white") in chess_board.all_possible_moves(player+1))
                             print(chess_board.all_possible_moves(player+1))
                     if player % 2 == 0 and chess_board.board[row][col].piece.name[0] == "b":
                         moves = chess_board.board[row][col].piece.possible_moves(chess_board.board, row, col)
@@ -83,19 +84,22 @@ if __name__ == "__main__":
                     previous_click.append([row, col])
         draw_squares(chess_display)
         draw_pieces(chess_display, chess_board.board)
+        new_row, new_col = chess_board.get_king_position("white")
+        if chess_board.board[new_row][new_col].piece.in_check:
+            pass
+        else:
+            if len(moves) != 0:
+                for col, row in moves:
+                    if chess_board.board[col][row].piece.name == "--":
+                        yellow_squares = (row*64, col*64)
+                        chess_display.blit(yellow_surface, yellow_squares)
+                    elif chess_board.board[col][row].piece.name[0] == "b" or chess_board.board[col][row].piece.name[0] == "w":
+                        red_squares = (row*64, col*64)
+                        chess_display.blit(red_surface, red_squares)
 
-        if len(moves) != 0:
-            for col, row in moves:
-                if chess_board.board[col][row].piece.name == "--":
-                    yellow_squares = (row*64, col*64)
-                    chess_display.blit(yellow_surface, yellow_squares)
-                elif chess_board.board[col][row].piece.name[0] == "b" or chess_board.board[col][row].piece.name[0] == "w":
-                    red_squares = (row*64, col*64)
-                    chess_display.blit(red_surface, red_squares)
-
-        pygame.display.update()
-        frames.tick(60)
-        pygame.display.flip()
+            pygame.display.update()
+            frames.tick(60)
+            pygame.display.flip()
     for name in board_states:
         for i in range(len(name)):
             for j in range(len(name[i])):
