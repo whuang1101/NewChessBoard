@@ -326,8 +326,8 @@ class King(Piece):
             self.name = "bK"
         self.in_check = False
 
-    def set_check_status(self):
-        return self.in_check
+    def set_check_status(self,status):
+        self.in_check = status
 
     def possible_moves(self, board, row, column):
         moves = []
