@@ -326,8 +326,8 @@ class King(Piece):
             self.name = "bK"
         self.in_check = False
 
-    def set_check_status(self):
-        return self.in_check
+    def set_check_status(self,status):
+        self.in_check = status
 
     def possible_moves(self, board, row, column):
         moves = []
@@ -339,6 +339,7 @@ class King(Piece):
                     if board[row][column].piece.color == "white":
                         if board[i][j].piece.name == "--" or board[i][j].piece.name[0] == "b":
                             moves.append((i, j))
+
                     else:
                         if board[i][j].piece.name == "--" or board[i][j].piece.name[0] == "w":
                             moves.append((i, j))
