@@ -339,6 +339,7 @@ class King(Piece):
                     if board[row][column].piece.color == "white":
                         if board[i][j].piece.name == "--" or board[i][j].piece.name[0] == "b":
                             moves.append((i, j))
+
                     else:
                         if board[i][j].piece.name == "--" or board[i][j].piece.name[0] == "w":
                             moves.append((i, j))

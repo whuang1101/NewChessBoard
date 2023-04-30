@@ -78,6 +78,7 @@ class Board():
             for j in range(len(self.board[i])):
                 previous_move = [[i, j]]
                 if player_number == 1:
+                    new_board = copy.deepcopy(board)
                     if new_board.board[i][j].piece.name[0] == "w":
                         piece_moves = new_board.board[i][j].piece.possible_moves(new_board.board,i,j)
                         for move in piece_moves:
@@ -95,6 +96,11 @@ class Board():
     def get_king_position(self, color):
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
-                if self.board[i][j].piece.name == "wK":
-                    move = (i, j)
-                    return move
+                if color == "white":
+                    if self.board[i][j].piece.name == "wK":
+                        move = (i, j)
+                        return move
+                else:
+                    if self.board[i][j].piece.name == "bK":
+                        move = (i,j)
+                        return move
