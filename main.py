@@ -51,6 +51,7 @@ if __name__ == "__main__":
     previous_click = []
     board_states = [copy.deepcopy(chess_board.board)]
     turn = 1
+    a = 1
     while chess_open:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -59,8 +60,13 @@ if __name__ == "__main__":
                 if chess_board.get_king_position("white") in chess_board.all_possible_moves(player + 1) and player % 2 == 1:
                     new_row, new_col = chess_board.get_king_position("white")
                     chess_board.board[new_row][new_col].piece.set_check_status(True)
-                    moves = chess_board.check_moves(1)
-                    print(chess_board.board[new_row][new_col].piece.in_check)
+                    moves, moves_dict = chess_board.check_moves(1,chess_board)
+                    if a == 1:
+                        print(chess_board.board[new_row][new_col].piece.in_check)
+                        print(moves)
+                        for key, value in moves_dict.items():
+                            print(key, value)
+                    a += 1
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # have to use cols, rows because of the way pygame starts at the top left instead of the bottom right.
                 col, row = pygame.mouse.get_pos()
