@@ -34,7 +34,7 @@ class Pawn(Piece):
             if row + 1 <= 8:
                 if board[row + 1][column].piece.name == "--":
                     moves.append((row + 1, column))
-                    if row + 2 >= 0:
+                    if row + 2 <= 7:
                         if board[row + 2][column].piece.name == "--" and self.move_count == 0:
                             moves.append((row + 2, column))
             if column + 1 <= 7:
