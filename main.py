@@ -59,17 +59,20 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 chess_open = False
             if turn != 1:
-                if chess_board.get_king_position("white") in chess_board.all_possible_moves(player%2 +1 ) \
+                if chess_board.get_king_position("white") in chess_board.all_possible_moves(player % 2 + 1) \
                         and player % 2 == 1:
                     new_row, new_col = chess_board.get_king_position("white")
                     chess_board.board[new_row][new_col].piece.set_check_status(True)
                     check_moves, moves_dict = chess_board.check_moves(1,chess_board)
+                elif chess_board.get_king_position("black") in chess_board.all_possible_moves(player % 2 + 1) \
+                        and player % 2 == 0:
+                    new_row, new_col = chess_board.get_king_position("black")
+                    chess_board.board[new_row][new_col].piece.set_check_status(True)
+                    check_moves, moves_dict = chess_board.check_moves(2, chess_board)
                     if a == 1:
-                        print(chess_board.board[new_row][new_col].piece.in_check)
-                        print(moves)
                         for key, value in moves_dict.items():
-                            print(key, value)
-                    a += 1
+                            print(key, " ", value)
+                        a +=1
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # have to use cols, rows because of the way pygame starts at the top left instead of the bottom right.
                 col, row = pygame.mouse.get_pos()
@@ -85,10 +88,15 @@ if __name__ == "__main__":
                                     board, i, j, previous_click)
                                 turn += .5
                                 board_states.append(copy.deepcopy(chess_board.board))
+                                if player % 2 == 1:
+                                    white_king_row, white_king_col = chess_board.get_king_position("white")
+                                    chess_board.board[white_king_row][white_king_col].piece.set_check_status(False)
+                                elif player % 2 == 0:
+                                    black_king_row, black_king_col = chess_board.get_king_position("black")
+                                    chess_board.board[black_king_row][black_king_col].piece.set_check_status(False)
                                 player += 1
-                                chess_board.board[white_king_row][white_king_col].piece.set_check_status(False)
                         moves.clear()
-                    elif player % 2 == 1:
+                    elif player % 2 == 1 or player % 2 == 0:
                         previous_click.clear()
                         for key,value in moves_dict.items():
                             if key[0] == row and key[1] == col:

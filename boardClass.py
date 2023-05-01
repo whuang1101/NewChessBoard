@@ -81,13 +81,27 @@ class Board():
                     new_board = copy.deepcopy(board)
                     if new_board.board[i][j].piece.name[0] == "w":
                         piece_moves = new_board.board[i][j].piece.possible_moves(new_board.board,i,j)
+                        move_dict[(i, j)] = []
                         for move in piece_moves:
                             new_board = copy.deepcopy(board)
                             new_board.board[i][j].piece.make_move(new_board.board,move[0],move[1],previous_move)
                             if new_board.get_king_position("white") not in new_board.all_possible_moves(2):
                                 moves.append(move)
-                                move_dict[(i,j)] = []
                                 move_dict[(i,j)].append(move)
+                else:
+                    new_board = copy.deepcopy(board)
+                    if new_board.board[i][j].piece.name[0] == "b":
+                        piece_moves = new_board.board[i][j].piece.possible_moves(new_board.board,i,j)
+                        move_dict[(i, j)] = []
+                        for move in piece_moves:
+                            new_board = copy.deepcopy(board)
+                            new_board.board[i][j].piece.make_move(new_board.board,move[0],move[1],previous_move)
+                            if new_board.get_king_position("black") not in new_board.all_possible_moves(1):
+                                moves.append(move)
+                                move_dict[(i,j)].append(move)
+        move_dict = {k: v for k, v in filter(lambda item: item[1], move_dict.items())}
+
+
         del new_board
         return moves, move_dict
 
