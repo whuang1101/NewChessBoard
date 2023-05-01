@@ -26,20 +26,20 @@ class Board():
                 elif row == 6:
                     self.board[row][col].piece = Pawn("white")
         self.board[0][0].piece = Rook("black")
-        self.board[0][1].piece = Bishop("black")
-        self.board[0][2].piece = Knight("black")
+        self.board[0][1].piece = Knight("black")
+        self.board[0][2].piece = Bishop("black")
         self.board[0][3].piece = Queen("black")
         self.board[0][4].piece = King("black")
-        self.board[0][5].piece = Knight("black")
-        self.board[0][6].piece = Bishop("black")
+        self.board[0][5].piece = Bishop("black")
+        self.board[0][6].piece = Knight("black")
         self.board[0][7].piece = Rook("black")
         self.board[7][0].piece = Rook("white")
-        self.board[7][1].piece = Bishop("white")
-        self.board[7][2].piece = Knight("white")
+        self.board[7][1].piece = Knight("white")
+        self.board[7][2].piece = Bishop("white")
         self.board[7][3].piece = Queen("white")
         self.board[7][4].piece = King("white")
-        self.board[7][5].piece = Knight("white")
-        self.board[7][6].piece = Bishop("white")
+        self.board[7][5].piece = Bishop("white")
+        self.board[7][6].piece = Knight("white")
         self.board[7][7].piece = Rook("white")
 
     def print_board(self):
@@ -69,10 +69,10 @@ class Board():
                     if self.board[i][j].piece.name != "--" and self.board[i][j].piece.color == "black":
                         moves += self.board[i][j].piece.possible_moves(self.board, i, j)
             return moves
+
     def check_moves(self,player_number,board):
         current_position = []
         moves = []
-        new_board = copy.deepcopy(board)
         move_dict = {}
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
